@@ -1,0 +1,11 @@
+{
+  "name": "Calculadora VIVE",
+  "short_name": "VIVE",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#123e8c",
+  "icons": [
+    {"src": "assets/vive-logo.png", "sizes": "any", "type": "image/png", "purpose": "any maskable"}
+  ]
+}

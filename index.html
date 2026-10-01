@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#123e8c" />
+  <meta name="description" content="Calculadora VIVE para estimar custos de construção e melhoria de latrinas." />
+  <title>Calculadora VIVE | Custos de Latrinas</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-wrap">
+      <img src="assets/vive-logo.png" alt="VIVE" class="brand-logo" />
+      <div>
+        <p class="eyebrow">Saneamento baseado no mercado</p>
+        <h1>Calculadora de Custos de Latrinas</h1>
+      </div>
+    </div>
+    <button id="resetBtn" class="btn btn-ghost" type="button">Limpar</button>
+  </header>
+
+  <main class="page-shell">
+    <section class="card intro-card">
+      <div>
+        <h2>1. Escolha a solução</h2>
+        <p>Selecione o tipo de latrina. As quantidades e preços de referência podem ser alterados para refletir a realidade local.</p>
+      </div>
+      <div class="selector-grid">
+        <label>
+          <span>Tipo de latrina</span>
+          <select id="latrineType"></select>
+        </label>
+        <label>
+          <span>Nome do cliente / família <small>(opcional)</small></span>
+          <input id="clientName" type="text" placeholder="Ex.: Família João" />
+        </label>
+        <label>
+          <span>Localidade <small>(opcional)</small></span>
+          <input id="locationName" type="text" placeholder="Ex.: Nhamatanda" />
+        </label>
+      </div>
+      <div id="solutionNote" class="solution-note"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <h2>2. Materiais</h2>
+          <p>Indique o que a família já tem. A calculadora mostra apenas o que falta comprar.</p>
+        </div>
+        <button id="addMaterialBtn" class="btn btn-secondary" type="button">+ Adicionar material</button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Material</th>
+              <th>Unidade</th>
+              <th>Qtd. necessária</th>
+              <th>Família já tem</th>
+              <th>Qtd. a comprar</th>
+              <th>Preço unit. (MZN)</th>
+              <th>Total (MZN)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="materialsBody"></tbody>
+        </table>
+      </div>
+
+      <div class="mobile-cards" id="materialsCards"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <h2>3. Outros custos</h2>
+          <p>Inclua mão de obra, transporte e quaisquer outros custos específicos desta obra.</p>
+        </div>
+        <button id="addCostBtn" class="btn btn-secondary" type="button">+ Adicionar custo</button>
+      </div>
+      <div id="costsList" class="costs-list"></div>
+    </section>
+
+    <section class="summary-grid">
+      <article class="summary-card">
+        <span>Materiais a comprar</span>
+        <strong id="materialsTotal">0 MZN</strong>
+      </article>
+      <article class="summary-card">
+        <span>Mão de obra</span>
+        <strong id="laborTotal">0 MZN</strong>
+      </article>
+      <article class="summary-card">
+        <span>Outros custos</span>
+        <strong id="otherTotal">0 MZN</strong>
+      </article>
+      <article class="summary-card total-card">
+        <span>CUSTO TOTAL ESTIMADO</span>
+        <strong id="grandTotal">0 MZN</strong>
+      </article>
+    </section>
+
+    <section class="card action-card">
+      <div>
+        <h2>Resumo para o cliente</h2>
+        <p>O valor é uma estimativa e deve ser confirmado pelo artesão antes do início da obra.</p>
+      </div>
+      <div class="action-row">
+        <button id="printBtn" class="btn btn-primary" type="button">Imprimir / Guardar PDF</button>
+        <button id="copyBtn" class="btn btn-secondary" type="button">Copiar resumo</button>
+      </div>
+      <div id="clientSummary" class="client-summary"></div>
+    </section>
+
+    <section class="source-note">
+      <strong>Nota:</strong> As quantidades e preços iniciais são valores de referência retirados do manual técnico MBS Sofala. Devem ser ajustados aos preços locais e às condições reais da obra.
+    </section>
+  </main>
+
+  <footer>
+    <span>VIVE • Calculadora de Custos de Latrinas</span>
+  </footer>
+
+  <template id="costRowTemplate">
+    <div class="cost-row">
+      <input class="cost-label" type="text" aria-label="Descrição do custo" />
+      <input class="cost-value" type="number" min="0" step="0.01" inputmode="decimal" aria-label="Valor do custo" />
+      <span>MZN</span>
+      <button class="icon-btn remove-cost" type="button" aria-label="Remover custo">×</button>
+    </div>
+  </template>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
